@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="warden_extractor.cpp" />
+    <ClCompile Include="cryptography\ARC4.cpp">
+      <Filter>cryptography</Filter>
+    </ClCompile>
+    <ClCompile Include="cryptography\BigNumber.cpp">
+      <Filter>cryptography</Filter>
+    </ClCompile>
+    <ClCompile Include="cryptography\HmacHash.cpp">
+      <Filter>cryptography</Filter>
+    </ClCompile>
+    <ClCompile Include="cryptography\SHA1.cpp">
+      <Filter>cryptography</Filter>
+    </ClCompile>
+    <ClCompile Include="cryptography\SHA256.cpp">
+      <Filter>cryptography</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\adler32.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\compress.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\crc32.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\deflate.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\gzclose.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\gzlib.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\gzread.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\gzwrite.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\infback.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inffast.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inflate.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\inftrees.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\trees.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\uncompr.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="zlib\zutil.c">
+      <Filter>zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="BLL2_Client.cpp" />
+    <ClCompile Include="BLL2.cpp" />
+    <ClCompile Include="BLL2_Server.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="cryptography">
+      <UniqueIdentifier>{dde45834-f310-482f-b065-17de6bba61be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zlib">
+      <UniqueIdentifier>{005ef993-7975-4b4f-94c5-5b0405807863}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cryptography\ARC4.hpp">
+      <Filter>cryptography</Filter>
+    </ClInclude>
+    <ClInclude Include="cryptography\BigNumber.hpp">
+      <Filter>cryptography</Filter>
+    </ClInclude>
+    <ClInclude Include="cryptography\HmacHash.hpp">
+      <Filter>cryptography</Filter>
+    </ClInclude>
+    <ClInclude Include="cryptography\SHA1.hpp">
+      <Filter>cryptography</Filter>
+    </ClInclude>
+    <ClInclude Include="cryptography\SHA256.hpp">
+      <Filter>cryptography</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\crc32.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\deflate.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\gzguts.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inffast.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inffixed.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inflate.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\inftrees.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\trees.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zconf.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zlib.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="zlib\zutil.h">
+      <Filter>zlib</Filter>
+    </ClInclude>
+    <ClInclude Include="ByteBuffer.hpp" />
+    <ClInclude Include="mio.hpp" />
+    <ClInclude Include="BLL2.hpp" />
+  </ItemGroup>
+</Project>
