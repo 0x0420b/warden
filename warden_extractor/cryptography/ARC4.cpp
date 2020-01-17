@@ -24,7 +24,7 @@ namespace shared::crypto
         EVP_CIPHER_CTX_free(m_ctx);
     }
 
-    void ARC4::Init(uint8_t* seed)
+    void ARC4::Init(const uint8_t* seed)
     {
         EVP_EncryptInit_ex(m_ctx, nullptr, nullptr, seed, nullptr);
     }

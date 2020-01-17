@@ -12,7 +12,7 @@ namespace shared::crypto
             ARC4(uint8_t const* seed, uint32_t length);
             ~ARC4();
 
-            void Init(uint8_t* seed);
+            void Init(const uint8_t* seed);
             void UpdateData(size_t len, uint8_t* data);
 
         private:

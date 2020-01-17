@@ -13,8 +13,8 @@
 
 struct header_t {
 	uint32_t m_magic;
-	uint32_t m_major;
-	uint32_t m_minor;
+	uint32_t m_revision;
+	uint32_t m_architecture;
 	uint32_t m_allocationSize;
 	uint32_t m_dllMainRVA;
 	struct {
@@ -104,8 +104,8 @@ void BLL2::process(size_t exportBase) {
 	
 	LOG_SKIP;
 	LOG_INFO << "Magic: " << HEX(header->m_magic) << " (" << fcc{ header->m_magic }.c_str() << ")" << std::endl;
-	LOG_INFO << "Major: " << std::dec << header->m_major << std::endl;
-	LOG_INFO << "Minor: " << std::dec << header->m_minor << std::endl;
+	LOG_INFO << "Revision: " << std::dec << header->m_revision << std::endl;
+	LOG_INFO << "Architecture: " << std::hex << std::setw(4) << header->m_architecture << std::endl;
 	LOG_INFO << "Allocation size: " << std::dec << header->m_allocationSize << std::endl;
 	LOG_INFO << "DllMain RVA: " << HEX(header->m_dllMainRVA) << std::endl;
 	LOG_INFO << "Exports RVA: " << HEX(header->m_exports.m_rva) << std::endl;
@@ -272,10 +272,15 @@ void copyMemory(scoped_mem_t& allocatedMemory, ByteBuffer& parser, size_t writeS
 void applyRelocations(scoped_mem_t& allocatedMemory, ByteBuffer& parser, size_t exportBase, header_t* header) {
 	LOG_DUMP << "Processing " << DEC(header->m_relocationData.m_count) << " relocation entries." << std::endl;
 
+#ifndef _WIN64
 	LOG << "                              +-------------------------------------------------+------------------+" << std::endl;
 	LOG << "                              | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F | 0123456789ABCDEF |" << std::endl;
 	LOG << "+-----------------------------+-------------------------------------------------+------------------+" << std::endl;
-
+#else
+    LOG << "                                              +-------------------------------------------------+------------------+" << std::endl;
+    LOG << "                                              | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F | 0123456789ABCDEF |" << std::endl;
+    LOG << "+---------------------------------------------+-------------------------------------------------+------------------+" << std::endl;
+#endif
 	// Produces hex diff of relocation and patch it
 	auto hexdiffRelocation = [&](uint8_t* ptr) {
 		// xx xx xx xx xx xx ?? ?? ?? ?? xx xx xx xx xx xx
@@ -312,8 +317,13 @@ void applyRelocations(scoped_mem_t& allocatedMemory, ByteBuffer& parser, size_t 
 
 		// Generate highlight line
 		std::stringstream line;
+
+#ifndef _WIN64
 		line << "+-----------------------------+-";
-		
+#else
+        line << "+---------------------------------------------+-";
+#endif
+
 		for (auto i = start; i < ptr; ++i) line << "---";
 		
 		line << "^^-^^-^^-^^-";
@@ -359,7 +369,7 @@ std::unordered_map<uintptr_t, std::string> dumpImports(scoped_mem_t& allocatedMe
 
 		HMODULE moduleHandle = LoadLibraryA(moduleName);
 		if (moduleHandle == NULL) {
-			throw std::runtime_error(std::string{ "Loading handle to " } +moduleName + " failed.\r\n");
+			throw std::runtime_error(std::string{ "Loading handle to " } + moduleName + " failed.\r\n");
 		}
 
 		for (uintptr_t* itr = reinterpret_cast<uintptr_t*>(allocatedMemory + *reinterpret_cast<uint32_t*>(&moduleData[8 * i + 4])); /* not a typo */; ++itr) {
@@ -378,7 +388,11 @@ std::unordered_map<uintptr_t, std::string> dumpImports(scoped_mem_t& allocatedMe
 			else {
 				// TODO: find ordinal name
 				LOG_DUMP << "Loading adress of " << moduleName << "!#" << *itr << ".\r\n";
-				*itr = reinterpret_cast<uint32_t>(GetProcAddress(moduleHandle, reinterpret_cast<const char*>(*itr & ~0x80000000)));
+#ifdef _WIN64
+                *itr = reinterpret_cast<uintptr_t>(GetProcAddress(moduleHandle, reinterpret_cast<const char*>(*itr & ~0x8000000000000000uLL)));
+#else
+				*itr = reinterpret_cast<uintptr_t>(GetProcAddress(moduleHandle, reinterpret_cast<const char*>(*itr & ~0x80000000)));
+#endif
 
 				throw std::runtime_error("Ordinal imports not supported yet (I'm lazy)");
 			}

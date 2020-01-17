@@ -116,7 +116,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>D:\OpenSSL-Win32\lib\VC\libcrypto64MD.lib;D:\OpenSSL-Win32\lib\VC\libssl64MDd.lib;D:\OpenSSL-Win32\lib\VC\libcrypto64MDd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>D:\OpenSSL-Win64\lib\VC\libcrypto64MD.lib;D:\OpenSSL-Win64\lib\VC\libssl64MDd.lib;D:\OpenSSL-Win64\lib\VC\libcrypto64MDd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -160,7 +160,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>D:\OpenSSL-Win32\lib\VC\libcrypto64MD.lib;D:\OpenSSL-Win32\lib\VC\libssl64MDd.lib;D:\OpenSSL-Win32\lib\VC\libcrypto64MDd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>D:\OpenSSL-Win64\lib\VC\libcrypto64MD.lib;D:\OpenSSL-Win64\lib\VC\libssl64MDd.lib;D:\OpenSSL-Win64\lib\VC\libcrypto64MDd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
